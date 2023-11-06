@@ -1,0 +1,199 @@
+/*
+
+0 - 600px: Phone
+600 - 900px: Tablet Portrait
+900 - 1200px: Tablet Landscape
+[1200 - 1800] is where our normal style apply
+1800px + : Big desktop
+
+*/
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-landscape
+- big-desktop
+*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-8rem); }
+  80% {
+    transform: translateX(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(3rem); }
+  80% {
+    transform: translateX(-8rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0; }
+  to {
+    width: 72%; } }
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent; }
+  50% {
+    border-color: #a6275f; } }
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 70.5%;
+  font-style: normal;
+  letter-spacing: -.02em;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  box-sizing: border-box;
+  min-height: 100vh; }
+  @media only screen and (max-width: 56.25em) {
+    body {
+      padding: 0; } }
+
+::selection {
+  color: #243d44;
+  background-color: rgba(231, 142, 184, 0.22); }
+
+#lingumania_langswitcher {
+  display: none; }
+
+body {
+  font-family: "Chirp", Hanuman, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #777; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-mb-big {
+  margin-bottom: 8rem; }
+
+.u-mb-medium {
+  margin-bottom: 4rem; }
+
+.u-mb-small {
+  margin-bottom: 1.5rem; }
+
+.u-mt-huge {
+  margin-top: 10rem; }
+
+.u-mt-big {
+  margin-top: 8rem; }
+
+.u-mt-medium {
+  margin-bottom: 4rem; }
+
+.u-mt-small {
+  margin-bottom: 1.5rem; }
+
+.container {
+  display: grid;
+  grid-template-rows: 30vh 40vh 30vh;
+  grid-template-columns: 30vw 40vw 30vw;
+  grid-gap: 1rem;
+  grid-template-areas: "top-left top top-right" "left center right" "bottom-left bottom bottom-right"; }
+  @media only screen and (max-width: 106.25em) {
+    .container {
+      grid-template-rows: 15vh 70vh 15vh;
+      grid-template-columns: 15vw 70vw 15vw; } }
+
+.heart-section {
+  grid-area: center;
+  display: grid;
+  grid-gap: .8rem;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: ". . ." ". center ." ". . ."; }
+
+:root {
+  --dim-x: 80px;
+  --dim-y: 70px;
+  --cruve-height: 20px; }
+
+#myPath path {
+  transform: translate(0.125px, 0.033px); }
+
+.heart-wrap {
+  perspective: 200px;
+  filter: drop-shadow(0px 10px 10px rgba(239, 189, 241, 0.75)); }
+  .heart-wrap > .heart {
+    cursor: pointer; }
+
+.heart {
+  position: relative;
+  height: var(--dim-y);
+  width: var(--dim-x);
+  overflow: hidden;
+  clip-path: url(#myPath);
+  background-image: radial-gradient(rgba(195, 199, 206, 0.32) 60%, rgba(181, 183, 183, 0.5)); }
+
+.tank {
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: var(--dim-x);
+  background-color: rgba(227, 47, 102, 0.9);
+  z-index: 5; }
+
+.curve {
+  position: absolute;
+  bottom: calc(-1 * var(--cruve-height));
+  width: var(--dim-x);
+  height: var(--cruve-height); }
+  .curve use {
+    animation: move 2s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite; }
+  .curve use:nth-child(1) {
+    animation-duration: 3s; }
+  .curve use:nth-child(2) {
+    animation-duration: 4s; }
+  .curve use:nth-child(3) {
+    animation-duration: 2s; }
+
+@keyframes move {
+  0% {
+    transform: translateX(-90px); }
+  100% {
+    transform: translateX(85px); } }
+
+.my-atropos {
+  grid-area: center;
+  display: grid;
+  align-items: center;
+  justify-items: center; }

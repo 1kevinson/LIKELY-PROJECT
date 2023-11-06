@@ -1,0 +1,50 @@
+// Basic definition about the entire project
+*,
+*::after,
+*::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html {
+   // This define what 1rem is
+   font-size: 70.5%; // 1rem = 10px; 10px/16px = 62.5%
+   font-style: normal;
+   letter-spacing: -.02em;
+   font-weight: 300;
+   -webkit-font-smoothing: antialiased;
+
+   // -> Always put the larger one before the smaller one
+   @include respond(tab-land) { // width < 1200?
+      font-size: 56.25%; //1rem = 9px, 9/16 = 50%
+   }
+
+   @include respond(tab-port) { // width < 900?
+      font-size: 50%; //1rem = 8px, 8/16 = 50%
+   }
+
+   @include respond(big-desktop) {
+      font-size: 75%; //1rem = 12, 12/16 = 75%
+   }
+}
+
+body {
+   box-sizing: border-box;
+   min-height: 100vh;
+
+   @include respond(tab-port) {
+      padding: 0;
+   }
+}
+
+// highlight by the user - text selection
+::selection {
+   color: $color-primary-dark;
+   background-color: rgba(231, 142, 184, 0.22);
+}
+
+#lingumania_langswitcher {
+   display: none;
+}
+

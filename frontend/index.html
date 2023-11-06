@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/css/style.css">
+    <title>Likely</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="heart-section">
+        <!-- main Atropos container (required), add your custom class here -->
+        <div class="atropos my-atropos">
+            <!-- scale container (required) -->
+            <div class="atropos-scale">
+                <!-- rotate container (required) -->
+                <div class="atropos-rotate">
+                    <!-- inner container (required) -->
+                    <div class="atropos-inner">
+                        <!-- put your custom content here -->
+                        <div class="heart-wrap" data-atropos-offset="-10">
+                            <div class="heart">
+                                <div class="tank"></div>
+                                <svg class="curve" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                                    <defs>
+                                        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                                    </defs>
+                                    <g>
+                                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(227, 47, 102, 0.5)"/>
+                                        <use xlink:href="#gentle-wave" x="48" y="1" fill="rgba(227, 47, 102, 0.3)"/>
+                                        <use xlink:href="#gentle-wave" x="48" y="2" fill="rgba(227, 47, 102, 0.85)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SVG -->
+<svg>
+    <clipPath id="myPath" clipPathUnits="objectBoundingBox">
+        <!-- <path d="M0.498,1 s0.243,-0.102,0.394,-0.323 S1,0.14,0.864,0.033 S0.498,0.141,0.498,0.141 S0.291,-0.08,0.124,0.031 s-0.159,0.434,-0.021,0.646 S0.498,1,0.498,1" /> -->
+        <path d="M0.373,0.967 S0.616,0.866,0.768,0.644 S0.912,0.107,0.739,0 S0.373,0.108,0.373,0.108 S0.166,-0.113,0,-0.002 S-0.159,0.432,-0.021,0.644 S0.373,0.967,0.373,0.967"></path>
+    </clipPath>
+</svg>
+
+<!-- SOUNDS -->
+<audio src="sound/cartoon-jump.mp3" preload="auto"></audio>
+<audio src="sound/arcade-game.wav" preload="auto"></audio>
+
+</body>
+<script type="module" src="src/index.js" defer></script>
+<script type="module" src="src/HoverEffect.js" defer></script>
+<script type="module" src="src/Confetti.js" defer></script>
+</html>

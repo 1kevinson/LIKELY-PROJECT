@@ -1,0 +1,34 @@
+{
+  "name": "heart-button",
+  "version": "1.0.0",
+  "description": "Liking heart button for blogs",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "7.18.6",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "babel-jest": "^27.4.6",
+    "concat": "^1.0.3",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.4.7",
+    "live-server": "^1.2.1",
+    "node-sass": "9.0.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "serve": "live-server",
+    "watch:sass": "node-sass -w styles/sass/main.scss styles/css/style.css",
+    "start": "npm-run-all --parallel serve watch:sass",
+    "compile:sass": "node-sass styles/sass/main.scss styles/css/style.css",
+    "compress:css": "node-sass styles/css/style.css styles/css/style.min.css --output-style compressed",
+    "build-prod:css": "npm-run-all compile:sass compress:css"
+  },
+  "dependencies": {
+    "@types/jest": "^27.4.0"
+  }
+}

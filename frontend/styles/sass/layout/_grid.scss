@@ -1,0 +1,16 @@
+.container {
+   display: grid;
+   grid-template-rows: 30vh 40vh 30vh;
+   grid-template-columns: 30vw 40vw 30vw;
+   grid-gap: 1rem;
+
+   grid-template-areas:
+      "top-left top top-right"
+      "left center right"
+      "bottom-left bottom bottom-right";
+
+   @include respond(medium-desktop) {
+      grid-template-rows: 15vh 70vh 15vh;
+      grid-template-columns: 15vw 70vw 15vw;
+   }
+}
