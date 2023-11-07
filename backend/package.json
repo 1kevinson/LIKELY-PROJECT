@@ -10,6 +10,7 @@
     "mongodb": "^6.2.0"
   },
   "devDependencies": {
+    "@types/node": "^20.8.10",
     "bun-types": "latest"
   },
   "module": "src/index.js"

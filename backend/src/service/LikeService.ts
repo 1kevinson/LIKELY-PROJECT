@@ -1,21 +1,21 @@
-import {LikeRepository} from "../repository/LikeRepository";
-import {PostLike} from "../model/PostLike";
+//@ts-nocheck
+import { LikeRepository } from '../repository/LikeRepository';
 
 export class LikeService {
 
     likeRepository: LikeRepository;
 
-    constructor() {
-        this.likeRepository = new LikeRepository();
+    constructor(likeRepository: LikeRepository) {
+        this.likeRepository = likeRepository;
     }
 
-    initializeLikeCount(postLike: PostLike) {
+    initializeLikeCount(postLike) {
         this.likeRepository.createLike(postLike);
     }
 
     findPostLikes(): string {
-        console.log('enter into service')
-        return 'Hello this is your likes => ' + 250;
+        console.log('enter into service!');
+        return this.likeRepository.findLike()
     }
 }
 
