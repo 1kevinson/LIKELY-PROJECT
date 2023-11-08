@@ -13,7 +13,9 @@ export class MongoRepository {
 
     async findLike(postSlug) {
         const excludedFields = '-_id -slug -createdAt -updatedAt';
-        const queryResult = await this.postModel.find({slug: "/".concat(postSlug)}, excludedFields).exec();
+        const queryResult = await this.postModel.find(
+            {slug: "/".concat(postSlug)}, excludedFields
+        ).exec();
         console.info(queryResult);
         return queryResult;
     }
