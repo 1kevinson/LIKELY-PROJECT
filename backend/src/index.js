@@ -9,7 +9,10 @@ const app = new Elysia();
 const likeService = new LikeService(new MongoRepository());
 
 app.use(swagger())
-    .patch('/likes/update/:slug', ({ params: { slug } }) => likeService.updateLikes(slug));
+   .patch(
+        '/likes/update/:slug',
+        ({ params: { slug } }) => likeService.updateLikes(slug)
+    );
 
 
 connectDB();
