@@ -6,12 +6,8 @@ export class LikeService {
         this.repository = repository;
     }
 
-    initializeLikeCount(postLike) {
-        this.repository.createLike(postLike);
-    }
-
-    findPostLikes(postSlug) {
-        return this.repository.findLike(postSlug)
+    updateLikes(postSlug) {
+        return this.repository.updateLike(postSlug)
     }
 }
 
