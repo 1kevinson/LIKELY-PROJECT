@@ -14,7 +14,7 @@ export class SchemaHandler {
             likes: { type: Number, default: 0 },
             createdAt: {
                 type: String,
-                default: moment().format('MMMM Do YYYY, h:mm:ss a')
+                default: moment().format('DD-MM-YYYY [-] HH:mm:ss')
             },
             updatedAt: String
         });
