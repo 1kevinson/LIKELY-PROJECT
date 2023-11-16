@@ -5,6 +5,6 @@ export const Logger = winston.createLogger({
     transports: [new winston.transports.Console()],
     format: winston.format.combine(
         winston.format.timestamp({format :  'DD-MM-YYYY [at] HH:mm:ss'}),
-        winston.format.json({ colorize: true })
+        winston.format.json()
     )
 });
