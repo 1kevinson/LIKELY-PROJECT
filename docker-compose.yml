@@ -1,0 +1,30 @@
+services:
+
+  web:
+    image: likely/frontend
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    container_name: likely-web
+    ports:
+      - '8000:8000'
+
+  server:
+    image: likely/backend
+    build:
+      context: ./backend
+    restart: unless-stopped
+    container_name: likely-server
+    ports:
+      - '3000:3000'
+
+  database:
+    image: likely/mongo
+    build:
+      context: ./database
+    restart: unless-stopped
+    container_name: likely-db
+    volumes:
+      - /Users/1kevinson/dockers-data/mongo/likely:/data/db
+    ports:
+      - '27017:27017'
