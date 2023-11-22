@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN bun install --production
+RUN npm install
 
 COPY src src
 

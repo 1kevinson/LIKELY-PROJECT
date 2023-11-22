@@ -6,8 +6,12 @@ services:
       context: ./frontend
     restart: unless-stopped
     container_name: likely-web
+    volumes:
+      - ./frontend:/usr/share/nginx/html
     ports:
-      - '8000:8000'
+      - '8080:80'
+    depends_on:
+      - server
 
   server:
     image: likely/backend
@@ -17,6 +21,8 @@ services:
     container_name: likely-server
     ports:
       - '3000:3000'
+    depends_on:
+      - database
 
   database:
     image: likely/mongo
@@ -25,6 +31,11 @@ services:
     restart: unless-stopped
     container_name: likely-db
     volumes:
-      - /Users/1kevinson/dockers-data/mongo/likely:/data/db
+      - likelydb:/data/db
+    env_file:
+      - ./env/mongo.env
     ports:
       - '27017:27017'
+
+volumes:
+  likelydb:
