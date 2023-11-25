@@ -1,16 +1,15 @@
-FROM oven/bun
+FROM oven/bun:1-alpine
 
-LABEL author="Kevin Kouomeu"
-LABEL version="1.0"
 LABEL description="Likely backend service"
 
 WORKDIR /app
 
 COPY package.json .
 
-RUN npm install
+RUN bun install
+RUN bun install --frozen-lockfile --production
 
-COPY src src
+COPY . .
 
 ENV NODE_ENV production
 CMD ["bun", "src/index.js"]

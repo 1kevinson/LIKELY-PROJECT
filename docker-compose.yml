@@ -19,6 +19,8 @@ services:
       context: ./backend
     restart: unless-stopped
     container_name: likely-server
+    volumes:
+      - ./backend:/app
     ports:
       - '3000:3000'
     depends_on:
