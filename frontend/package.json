@@ -21,7 +21,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "serve": "live-server",
+    "serve": "live-server --port=8081",
     "watch:sass": "node-sass -w styles/sass/main.scss styles/css/style.css",
     "start": "npm-run-all --parallel serve watch:sass",
     "compile:sass": "node-sass styles/sass/main.scss styles/css/style.css",
