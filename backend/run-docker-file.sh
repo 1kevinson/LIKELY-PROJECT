@@ -9,6 +9,7 @@ then
   docker run \
     --mount type=bind,src=./src,dst=/app/src \
     --publish 3000:3000 \
+    --env-file ./.env \
     --name $image_name \
     --detach $image_name
 else
