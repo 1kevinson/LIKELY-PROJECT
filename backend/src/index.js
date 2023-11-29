@@ -15,7 +15,7 @@ app.use(swagger())
         .get('/find/:slug', (
             { params: { slug } }) => likeService.findPostLikes(slug)
         )
-        .patch('/likes/update/:slug', (
+        .patch('/update/:slug', (
             { params: { slug } }) => likeService.updateLikes(slug)
         )
     );

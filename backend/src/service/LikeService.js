@@ -6,6 +6,10 @@ export class LikeService {
         this.repository = repository;
     }
 
+    findPostLikes(postSlug) {
+        return this.repository.findLike(postSlug)
+    }
+
     updateLikes(postSlug) {
         return this.repository.updateLike(postSlug)
     }
