@@ -4,6 +4,7 @@ import Sounds from "./Sounds.js";
 import Confetti from "./Confetti.js";
 
 window.onload = unit => {
+    const likeText = document.getElementById('like-text');
     const heartLevels = [10, 30, 50, 100];
     const fillLevels = [5, 15, 25, 40];
     let counter = 0;
@@ -14,7 +15,7 @@ window.onload = unit => {
 
         const postSlug = 'interactive-guide-to-grid';
         const updatedLike = await updateLikeCount(postSlug).then((response) => {
-            console.log(response.data.likes);
+            likeText.textContent = response.data.likes;
         }).catch(error => console.log(error))
 
         gsap.to('.heart', {

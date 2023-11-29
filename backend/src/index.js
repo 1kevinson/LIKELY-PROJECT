@@ -11,9 +11,13 @@ const likeService = new LikeService(new MongoRepository());
 
 app.use(swagger())
     .use(cors({ origin: true }))
-    .patch(
-        '/likes/update/:slug',
-        ({ params: { slug } }) => likeService.updateLikes(slug)
+    .group('/likes', app => app
+        .get('/find/:slug', (
+            { params: { slug } }) => likeService.findPostLikes(slug)
+        )
+        .patch('/likes/update/:slug', (
+            { params: { slug } }) => likeService.updateLikes(slug)
+        )
     );
 
 
