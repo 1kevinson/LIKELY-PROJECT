@@ -4,14 +4,14 @@ export default class Confetti {
 
     static run() {
         confetti({
-            particleCount: 13.5,
+            particleCount: 12.5,
             spread: 200,
-            scalar: 1.25,
-            decay: .95,
+            scalar: 1.35,
+            decay: .94,
             startVelocity: 17.5,
             angle: 90,
-            gravity: 1.5,
-            origin: { y: 0.485 }
+            gravity: 1.75,
+            origin: { y: .5, x: .425 } // get the position of the heart on the screen
         });
     }
 }

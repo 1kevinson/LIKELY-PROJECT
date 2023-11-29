@@ -192,8 +192,13 @@ body {
   100% {
     transform: translateX(85px); } }
 
+.like-text {
+  font-size: 3rem; }
+
 .my-atropos {
   grid-area: center;
   display: grid;
   align-items: center;
-  justify-items: center; }
+  justify-items: center;
+  grid-template-columns: min-content max-content;
+  grid-column-gap: 3.5rem; }

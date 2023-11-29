@@ -4,12 +4,14 @@ import { swagger } from '@elysiajs/swagger';
 import { connectDB } from './database/connectDB.js';
 import { LikeService } from './service/LikeService.js';
 import { MongoRepository } from './repository/mongo/MongoDbRepository';
+import cors from '@elysiajs/cors';
 
 const app = new Elysia();
 const likeService = new LikeService(new MongoRepository());
 
 app.use(swagger())
-   .patch(
+    .use(cors({ origin: true }))
+    .patch(
         '/likes/update/:slug',
         ({ params: { slug } }) => likeService.updateLikes(slug)
     );

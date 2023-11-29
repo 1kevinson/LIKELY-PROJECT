@@ -1,4 +1,5 @@
 import gsap from 'https://cdn.jsdelivr.net/npm/gsap@3.12.2/+esm';
+import axios from 'https://cdn.jsdelivr.net/npm/axios@1.6.2/+esm'
 import Sounds from "./Sounds.js";
 import Confetti from "./Confetti.js";
 
@@ -8,8 +9,13 @@ window.onload = unit => {
     let counter = 0;
     let isHeartFull = false;
 
-    function pumpHeart() {
+    async function pumpHeart() {
         if (isHeartFull) return;
+
+        const postSlug = 'interactive-guide-to-grid';
+        const updatedLike = await updateLikeCount(postSlug).then((response) => {
+            console.log(response.data.likes);
+        }).catch(error => console.log(error))
 
         gsap.to('.heart', {
             translateZ: counter === 3 ? fillLevels[counter] : 0,
@@ -34,11 +40,15 @@ window.onload = unit => {
             duration: 0.35
         });
 
-        if (++counter > 3){
+        if (++counter > 3) {
             isHeartFull = true;
             Confetti.run();
             heart.style.cursor = 'default';
         }
+    }
+
+    async function updateLikeCount(slug) {
+        return axios.patch('http://localhost:3000/likes/update/'.concat(slug));
     }
 
     let heart = document.getElementsByClassName('heart')[0];

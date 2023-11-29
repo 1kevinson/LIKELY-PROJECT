@@ -1,3 +1,4 @@
 # Files to avoid from being copied into container
 node_modules
 Dockerfile
+run-docker-file.sh

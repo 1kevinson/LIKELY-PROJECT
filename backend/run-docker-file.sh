@@ -7,7 +7,7 @@ if docker build --tag $image_name .
 then
   echo '--- 👨🏽‍💻 run backend container for dev environnement ---'
   docker run \
-    --mount type=bind,src=./src,dst=/app/src \
+    --mount type=bind,src=./,dst=/app/ \
     --publish 3000:3000 \
     --env-file .env \
     --name $image_name \
