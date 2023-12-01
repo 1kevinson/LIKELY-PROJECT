@@ -4,53 +4,97 @@ import Sounds from './Sounds.js';
 import Confetti from './Confetti.js';
 
 window.onload = async unit => {
-    const POST_SLUG = 'interactive-guide-to-grid';
+    const POST_SLUG = 'interactive-guide-to-jquery';
+
+    let isHeartFull = false;
+    const heartLevels = [10, 30, 50, 100];
+    const fillLevels = [5, 15, 25, 40];
+    const likeText = document.getElementById('like-text');
+    let heart = document.getElementsByClassName('heart')[0];
+
+    heart.addEventListener('click', () => pumpHeart());
+
     const initLikes = await initLikeCount(POST_SLUG)
         .then((response) => response)
         .catch(error => console.log(error));
 
-    let counter = 0;
-    const heartLevels = [10, 30, 50, 100];
-    const fillLevels = [5, 15, 25, 40];
-    const likeText = document.getElementById('like-text');
     likeText.textContent = initLikes.data.likes;
-    let isHeartFull = false;
+
+    let existingVisitor = localStorage.getItem(window.btoa(POST_SLUG));
+    let visitorAsJSON = JSON.parse(existingVisitor);
+    let visitorStep;
+
+    if (existingVisitor) {
+        visitorStep = visitorAsJSON.step;
+        if (visitorStep > 3) heart.style.cursor = 'default';
+        heartState(visitorStep - 1);
+    } else {
+        visitorStep = 0;
+        updateVisitorStep(visitorStep, POST_SLUG);
+    }
+
+    function heartState(stepCount) {
+        gsap.to('.curve', {
+            bottom: heartLevels[stepCount],
+            transformOrigin: 'bottom',
+            scaleY: .25,
+            duration: .25
+        });
+
+        gsap.to('.tank', {
+            height: heartLevels[stepCount],
+            duration: .15
+        });
+    }
 
     async function pumpHeart() {
-        if (isHeartFull) return;
+        if (visitorStep > 3) return;
 
-        const updatedLike = await updateLikeCount(POST_SLUG).then((response) => {
+        await updateLikeCount(POST_SLUG).then((response) => {
             likeText.textContent = response.data.likes;
         }).catch(error => console.log(error));
 
         gsap.to('.heart', {
-            translateZ: counter === 3 ? fillLevels[counter] : 0,
+            translateZ: visitorStep === 3 ? fillLevels[visitorStep] : 0,
             duration: 0.25
         });
 
         gsap.to('.curve', {
-            bottom: heartLevels[counter],
+            bottom: heartLevels[visitorStep],
             transformOrigin: 'bottom',
             scaleY: .25,
             duration: 0.15,
-            onComplete: counter < 3 ? Sounds.playInterfaceSound : Sounds.playCartoonJump
+            onComplete: visitorStep < 3 ? Sounds.playInterfaceSound : Sounds.playCartoonJump
         });
 
         gsap.to('.tank', {
-            height: heartLevels[counter],
+            height: heartLevels[visitorStep],
             duration: 0.15
         });
 
         gsap.to('.heart', {
-            translateZ: counter === 3 ? 0 : fillLevels[counter],
+            translateZ: visitorStep === 3 ? 0 : fillLevels[visitorStep],
             duration: 0.35
         });
 
-        if (++counter > 3) {
+        visitorStep++;
+
+        if (visitorStep > 3) {
             isHeartFull = true;
             Confetti.run();
             heart.style.cursor = 'default';
         }
+
+        updateVisitorStep(visitorStep, POST_SLUG);
+    }
+
+    function updateVisitorStep(stepCount, postSlug) {
+        let visitorData = {
+            step: stepCount,
+            state: stepCount > 3 ? 'COMPLETE' : 'LOADING'
+        };
+
+        localStorage.setItem(window.btoa(postSlug), JSON.stringify(visitorData));
     }
 
     async function initLikeCount(slug) {
@@ -60,9 +104,4 @@ window.onload = async unit => {
     async function updateLikeCount(slug) {
         return axios.patch('http://localhost:3000/likes/update/'.concat(slug));
     }
-
-    let heart = document.getElementsByClassName('heart')[0];
-    heart.addEventListener('click', () => {
-        pumpHeart();
-    });
 };
