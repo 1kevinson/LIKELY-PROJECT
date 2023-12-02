@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This file is use for the development env
+
 image_name="likely-frontend-dev"
 
 echo '--- 👨🏽‍💻 build developement image ---'
